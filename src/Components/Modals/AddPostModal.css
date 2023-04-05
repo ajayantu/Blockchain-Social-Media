@@ -1,0 +1,106 @@
+
+.modal.active{
+    transform: translate(-50%,-55%) scale(1);
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-55%) scale(0);
+    transition: 200ms;
+    background: #262626;
+    border-radius: 10px;
+    z-index: 10;
+
+    width: 500px;
+    max-width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.modal h1{
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 7;
+    pointer-events: none;
+    transition: 200ms;
+}
+#overlay.active{
+    opacity: 1;
+    pointer-events: all;
+}
+.modal .modal_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3% 5%;
+
+    border-bottom: 1px solid rgba(108, 108, 108, 0.4);
+    margin-bottom: 10px;
+}
+.modal .modal_body{
+    padding: 30px 40px;
+}
+.modal .close-icon{
+    cursor: pointer;
+    width: 30px;
+}
+.modal .close-icon i{
+    color: #fff;
+    font-size: 2rem;
+    text-align: left;
+
+}
+.modal textarea{
+    background-color: rgb(66, 66, 66);
+    outline: none;
+    border: none;
+
+    color: #d2d2d2;
+    font-size: 1.05rem;
+}
+.modal input{
+    margin-top: 20px;
+    color: #fff;
+}
+.modal .modal_title{
+    color: #fff;
+}
+.modal-container textarea:focus{
+    outline: none;
+    border: none;
+}
+.modal_title{
+    font-size: 1.5rem;
+    color: rgb(33, 33, 33);
+
+}
+.post_text{
+    width: 100%;
+    padding: 10px;
+}
+.modal-qstn-submit{
+    cursor: pointer;
+    margin-top: 25px;
+    background-color: #2b59b8;
+    padding: 8px 5px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+

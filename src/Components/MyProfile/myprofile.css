@@ -1,0 +1,151 @@
+.MyProfile {
+    margin-left: 18em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 30px;
+    
+}
+
+.MyProfile form {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+    background-color: #262626;
+    width: 100%;
+    max-width: 600px;
+
+    padding: 30px;
+
+}
+
+.MyProfile .profileimg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+.profileimg button {
+    margin-top: 5%;
+    border-radius: 8px;
+    background-color: #2b59b8;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+
+
+.MyProfile .row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
+
+    gap: 20px;
+}
+
+.MyProfile .field {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    width: 100%;
+}
+
+.MyProfile .txtbox {
+    padding: 3%;
+    border-radius: 5px;
+    font-size: large;
+
+    color: #fff;
+
+}
+
+.MyProfile .gender {
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.MyProfile .gender label {
+    margin: 5px;
+}
+
+.MyProfile .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+.MyProfile .btn button {
+    width: 50%;
+    margin-top: 2%;
+    border-radius: 8px;
+    background-color: #2b59b8;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.field textarea{
+    resize: none;
+    width: 100%;
+}
+
+.field input{
+    background-color: rgb(66, 66, 66);
+    border: none;
+}
+.field textarea{
+    background-color: rgb(66, 66, 66);
+    border: none;
+
+    color: #fff;
+}
+.field div{
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+@media(max-width:850px){
+    .MyProfile{
+        margin-left: 0;
+    }
+    .MyProfile form{
+        margin-top: 40px;
+
+    }
+}
+@media (max-width:720px) {
+
+    .btn button,
+    button {
+        width: 60%;
+        margin-bottom: 5%;
+    }
+
+    .MyProfile .row,
+    .MyProfile .gender {
+        flex-direction: column;
+    }
+
+    .MyProfile .field{
+        margin-bottom: 3%;
+    }
+
+    .MyProfile .txtbox{
+        /* width:90%; */
+    }
+
+
+}

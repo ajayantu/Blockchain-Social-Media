@@ -1,0 +1,32 @@
+.user_pic img{
+    width: 30px;
+}
+.user_comments{
+    display: flex;
+    gap: 10px;
+}
+
+.user_comments .comment_content{
+    background-color: #3a3b3c;
+    padding: 15px;
+
+    border-radius: 10px;
+}
+
+.user_comments{
+    margin: 10px;
+}
+.comment_text{
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: hsla(0, 0%, 100%, 0.9);
+}
+
+.user_detail{
+    font-weight: 600;
+    color: hsla(0, 0%, 100%, 0.9);
+
+    font-size: 14px;
+}

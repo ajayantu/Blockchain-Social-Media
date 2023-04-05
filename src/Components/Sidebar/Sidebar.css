@@ -1,0 +1,132 @@
+.sidebar{
+    position: fixed;
+    height: 100%;
+    width: 18em;
+    left: 0;
+    background-color: #121212;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    overflow-y: auto;
+    z-index: 8;
+}
+.sidebar[data-visible="true"]{
+    transform: translateX(0%);
+    transition: transform 350ms ease-out;
+}
+.menu_links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
+}
+.image-text .img img{
+    width: 50px;
+}
+.menu{
+    height: 100%;
+}
+.image-text{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: bold;
+    height: 92px;
+    width: 100%;
+}
+.list_items{
+    width: 100%;
+    margin-top: 20px;
+    height: 100%;
+}
+.sidebar li{
+    list-style: none;
+    font-size: 20px;
+    height: 8vh;
+}
+.sidebar li a:hover{
+    background-color: #3a3b3c;
+    border-radius: 10px;
+}
+
+.sidebar li a{
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 13px 15px;
+    cursor: pointer;
+
+    width: 100%;
+}
+.sidebar li span{
+    font-size: 16px;
+}
+svg{
+    width: 25px;
+}
+.sidebar li a i{
+    font-size: 1.5rem;
+}
+.sidebar_contents{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+.bottom_content{
+    margin-top: 24px;
+}
+.mode {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    gap: 20px;
+    padding: 15px;
+
+
+    background-color: #6f6f6f18;
+
+
+    border-radius: 10px;
+    height: 50px !important;
+}
+.mode .sun-moon .sun{
+    display: none;
+}
+
+.sidebar[data-visible="true"]{
+    transform: translateX(0%);
+    
+}
+
+#selected-sidemenu{
+    background-color: #36363664;
+    font-weight: 500;
+    border-radius: 5px;
+    border-left: 3px solid #FBB566;
+
+    color: #fff;
+}
+
+@media only screen and (max-width: 850px) {
+    .sidebar{
+        transform: translateX(-100%);
+        transition: transform 350ms ease-out;
+
+        top: 50px;
+    }
+    .menu_links{
+        height: 90%;
+    }
+    .image-text{
+        display: none;
+    }
+    .main_container{
+        padding-top: 33px;
+    }
+}

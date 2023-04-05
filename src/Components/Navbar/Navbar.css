@@ -1,0 +1,40 @@
+nav{
+    position: fixed;
+    width: 100%;
+    background: #232323;
+    padding: 8px 2%;
+    z-index: 7;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    display: none;
+}
+
+.nav-content .bars svg{
+    width: 1.9rem;
+}
+.nav-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.nav-content h1{
+    font-size: 1.2rem;
+}
+.nav-content .logo{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.logo img{
+    width: 30px;
+}
+
+@media(max-width:850px){
+    nav{
+        display: block;
+    }
+    .main_container{
+        padding: 20px 10px;
+    }
+}

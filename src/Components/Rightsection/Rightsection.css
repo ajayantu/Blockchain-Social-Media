@@ -1,0 +1,42 @@
+.peoples .people_container .people_item img{
+    width: 35px;
+}
+
+
+.peoples{
+    width: 100%;
+    margin-left: 5%;
+   
+    position: sticky;
+    top: 0;
+    flex-basis: 25%;
+    align-self: flex-start;
+
+
+    margin-top: 30px;
+    padding-top: 30px;
+}
+.people_container{
+    margin-top: 30px;
+
+
+
+
+}
+.peoples p{
+    font-weight: 600;
+    color: #e4e6eb;
+}
+.people_item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+@media(max-width:1150px){
+    .peoples{
+        display: none;
+    }
+}

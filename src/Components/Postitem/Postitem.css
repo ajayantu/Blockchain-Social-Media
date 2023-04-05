@@ -1,0 +1,78 @@
+.post_controls{
+    display: flex;
+    justify-content: space-between;
+    padding:0 3%;
+}
+.name_details .username{
+    word-break: break-all;
+}
+.post_controls .like,.post_controls .comment,.post_controls .share{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #b0b3b8;
+
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.post_controls .like i,.post_controls .comment i,.post_controls .share i{
+    font-size: 1.5em;
+    color: #3a76f7;
+    cursor: pointer;
+}
+.post_controls .like span,.post_controls .comment span,.post_controls .share span{
+    font-size: 0.9rem;
+}
+
+.post_controls .share i{
+    transform: scaleX(-1);
+}
+
+.comments_main_container .add_comment .user_img img{
+    width: 40px;
+}
+.add_comment{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments_main_container[data-visible="false"]{
+    display: none;   
+}
+.add_comment .input_comment{
+    width: 100%;
+}
+.add_comment .input_comment input{
+    padding: 12px 20px;
+
+    outline: none;
+    border: none;
+    width: 100%;
+
+    background-color: transparent;
+    color: #e4e6eb;
+    font-size: 15px;
+}
+
+.input_comment{
+    border-radius: 20px;
+    background-color: #3c4345;
+    display: flex;
+    align-items: center;
+}
+
+.input_comment .send_comment{
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #747576;
+}
+.send_comment i{
+    margin-top: 2px;
+}
+.comments_part{
+    margin-top: 20px;
+}

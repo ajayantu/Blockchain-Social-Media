@@ -1,0 +1,44 @@
+.users_container{
+    padding: 30px;
+    margin-left:18em;
+}
+.users{
+    display: flex;
+    flex-wrap: wrap;
+}
+.people_item_users{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background-color: rgb(54, 54, 54);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+
+    max-width: 20em;
+}
+.user_info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user_info img{
+    width: 40px;
+}
+.follow_btn button{
+    padding: 8px 20px;
+    border: none;
+    background-color: rgb(41, 54, 172);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 850px) {
+    .users_container{
+        margin: 0;
+    }
+}

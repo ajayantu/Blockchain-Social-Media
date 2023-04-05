@@ -1,0 +1,27 @@
+.MyPostitem{
+    margin-top: 2%;
+    width: 75vw;
+    list-style: none;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.MyPostitem header{
+    display: flex;
+    width: 100%;
+    background-color: black ;                
+    /*#99EDC3 */
+    justify-content: space-between;
+    padding: 1%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.MyPostitem section{
+    display: flex;
+    text-align: justify;
+}
+
+.MyPostitem section p{
+    padding: 1%;
+}
+
