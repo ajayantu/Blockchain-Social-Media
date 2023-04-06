@@ -31,10 +31,27 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
     color: #fff;
 }
+.people_box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.people_box button{
+    background-color: #2b59b8;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
 
+    padding: 2% 3%;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+
+    border: none;
+    color: #fff;
+}
 @media(max-width:1150px){
     .peoples{
         display: none;

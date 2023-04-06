@@ -48,7 +48,7 @@ export const SocialMediaProvider = ({ children }) => {
             console.log(accounts[0]);
 
             // const contractAddress1="0x4353c29e8b6a3f4FF6958570F8D77a5659E04E33";
-            const contractAddres ="0x9B5266fAAdac6216d1750a8Abc93bA7603867eef";
+            const contractAddres ="0xf5F9f367FbD4DEE2b6DEC3d622b61Bb3270dd528";
             
             const contractAbi = abi.abi;
 

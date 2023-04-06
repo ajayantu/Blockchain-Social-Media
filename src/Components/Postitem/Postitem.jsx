@@ -22,8 +22,8 @@ function Postitem(props) {
       <div className="user_details">
         <img src={pic1} alt="" />
         <div className="name_details">
-          <p className="username">{props.userId}</p>
-          <p className="name">Ajay Antu</p>
+          <p className="username">@{props.user.username}</p>
+          <p className="name">{props.user.name}</p>
         </div>
       </div>
       <div className="post_contents">

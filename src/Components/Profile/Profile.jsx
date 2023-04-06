@@ -23,6 +23,7 @@ function Profile() {
             setInputVal(prof.accountCid)
         }
         getProf()
+        // eslint-disable-next-line
     },[contract])
   return (
     <>

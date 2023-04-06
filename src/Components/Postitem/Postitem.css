@@ -4,7 +4,7 @@
     padding:0 3%;
 }
 .name_details .username{
-    word-break: break-all;
+    margin-bottom: 3px;
 }
 .post_controls .like,.post_controls .comment,.post_controls .share{
     display: flex;

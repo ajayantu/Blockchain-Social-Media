@@ -27,6 +27,7 @@ function CommentMainItem(props) {
             setCommentData(comments)
         }
         getComments()
+        // eslint-disable-next-line
       },[contract])
   return (
     <>

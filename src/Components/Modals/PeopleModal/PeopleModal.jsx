@@ -43,8 +43,8 @@ const PeopleModal = () => {
                                     <div className='info'>
                                         <img src={userimg} alt="" width={50} />
                                         <div className="name">
-                                            <b><p>{peop.accountCid}</p></b>
-                                            <span>@fullname</span>
+                                            <b><p>{peop.name}</p></b>
+                                            <span>@{peop.username}</span>
                                         </div>
                                     </div>
                                     <div className="btn follow" onClick={()=>handleFollow(peop.userId)}>

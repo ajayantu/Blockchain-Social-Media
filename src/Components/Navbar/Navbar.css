@@ -3,7 +3,7 @@ nav{
     width: 100%;
     background: #232323;
     padding: 8px 2%;
-    z-index: 7;
+    z-index: 10;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     display: none;
