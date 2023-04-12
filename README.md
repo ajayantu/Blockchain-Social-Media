@@ -37,7 +37,7 @@ Run the app
 
 ## Screenshots
 
-[Screenshot 2023-04-12 205833](https://user-images.githubusercontent.com/73870072/231507924-a42386e6-512c-4afb-b4dc-068699dde507.png)
+![Screenshot 2023-04-12 205806](https://user-images.githubusercontent.com/73870072/231508564-e719e63f-aa0d-4f58-b8b7-a286b7fe1f24.png)
 
 ![Screenshot 2023-04-12 205833](https://user-images.githubusercontent.com/73870072/231508391-9d1ea4f4-1042-49e3-b0ff-d9e5211bcd94.png)
 
