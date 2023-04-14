@@ -14,9 +14,7 @@ function Rightsection(){
     useEffect(()=>{
         const getPeople = async()=>{
             const peop = await contract.getAllProfiles()
-            console.log(peop[0]);
             setPeoples(peop)
-            console.log(peop);
         }
         contract && getPeople()
     },[contract])
@@ -28,8 +26,7 @@ function Rightsection(){
                 {
                     peoples && peoples.map((peop,index)=>{
                         return (
-                          <>
-                            <div className="people_container">
+                            <div className="people_container" key={index}>
                               <div className="people_box">
                                 <div className="people_item">
                                   <img src={pic1} alt="" />
@@ -39,7 +36,6 @@ function Rightsection(){
                               </div>
                               
                             </div>
-                          </>
                         )
                     })
                 }

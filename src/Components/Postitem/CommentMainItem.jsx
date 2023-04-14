@@ -13,8 +13,6 @@ function CommentMainItem(props) {
         setComment(e.target.value)
       }
       const handlePostComment= async ()=>{
-        console.log(comment);
-        console.log(props.postId);
         contract && await contract.addComment(props.postId-1,comment);
         window.location.reload()
       }
@@ -23,7 +21,6 @@ function CommentMainItem(props) {
         const getComments = async()=>{
             console.log("comments fetched");
             const comments = await contract.viewPostComment(props.postId-1);
-            console.log(comments);
             setCommentData(comments)
         }
         getComments()

@@ -2,13 +2,22 @@ import React, { useContext } from 'react'
 import { SocialMediaContext } from '../../Context/SocialMediaContext'
 import "./Home.css"
 import ethlogo from "../../assets/ethlogo.png"
+import reactlogo from "../../assets/reactlogo.png"
+import metamasklogo from "../../assets/metamasklogo.png"
 import { useNavigate } from 'react-router-dom'
 function Home() {
     const navigate = useNavigate()
     const { connectWallet } = useContext(SocialMediaContext);
     const walletConnect = async ()=>{
-        await connectWallet();
-        navigate("/home");
+        const res = await connectWallet();
+        if(res==0){
+            navigate("/")
+            return alert("Please install metamask")
+        }
+        else{
+            navigate("/home");
+            window.location.reload()
+        }
     }
   return (
     <>
@@ -38,7 +47,11 @@ function Home() {
                 </div>
                 <div className="right_page">
                     {/* <img src={titleimg} alt="" /> */}
-                    <div className="img"><img src={ethlogo} alt="" /></div>
+                    <div className="eth-img img">
+                        <img src={ethlogo} alt="" />
+                        <img src={reactlogo} alt="" />
+                        <img src={metamasklogo} alt="" />
+                    </div>
                 </div>
             </div>
         </div>

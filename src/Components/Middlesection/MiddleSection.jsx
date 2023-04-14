@@ -9,7 +9,7 @@ import { SocialMediaContext } from '../../Context/SocialMediaContext'
 
 function Middlesection(){
   const arr=[pic2,pic3,pic4]
-  const { post,state,setPost } = useContext(SocialMediaContext);
+  const { post,state,setPost,currentAccount } = useContext(SocialMediaContext);
   const { contract } = state
   const [postUsers,setpostUsers] = useState([])
   let x = Math.floor((Math.random() * 4) + 2);
@@ -22,6 +22,7 @@ function Middlesection(){
         const user = await contract.getProfile(posts[i].userId)
         users.push(user)
       }
+      console.log(posts);
       setpostUsers(users)
       setPost(posts)
     }
@@ -33,7 +34,7 @@ function Middlesection(){
             <div className="post_container">
               {post && postUsers.length>0 && post.map((pst,index)=>{
                   return (
-                    <Postitem user={postUsers[index]} pic={arr[index%3]} postId={parseInt(pst.postNum)} key={index} userId={pst.userId} postHash={pst.postHash} />
+                    <Postitem user={postUsers[index]} pic={pst.imgUrl} postId={parseInt(pst.postNum)} key={index} userId={pst.userId} postText={pst.postText} />
                   )  
               })}    
             </div>

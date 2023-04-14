@@ -13,7 +13,6 @@ function UserPost() {
     useEffect(()=>{
         const getUserPost = async()=>{
             const uposts = await contract.viewUserPost(currentAccount)
-            console.log(uposts);
             setUserposts(uposts)
         }
         contract && getUserPost()

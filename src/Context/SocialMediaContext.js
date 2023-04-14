@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { ethers } from 'ethers';
 import abi from "../../src/contracts/SocialMedia.json"
-
 const { ethereum } = window;
 
 
@@ -39,16 +38,19 @@ export const SocialMediaProvider = ({ children }) => {
     }
 
     const checkIfWalletIsConnect = async ()=>{
-        if(!ethereum) return alert("Install metamask first");
-
+        if(!ethereum){
+            return alert("Install metamask first");
+        }
+        if(currentAccount){
+            return 1
+        }
         const accounts = await ethereum.request({method:"eth_accounts"});
 
         if(accounts.length>0) {
             setCurrentAccount(accounts[0]);
-            console.log(accounts[0]);
 
             // const contractAddress1="0x4353c29e8b6a3f4FF6958570F8D77a5659E04E33";
-            const contractAddres ="0xf5F9f367FbD4DEE2b6DEC3d622b61Bb3270dd528";
+            const contractAddres ="0xaba91c258dE3482cc62f69226b75e3dE7F51869A";
             
             const contractAbi = abi.abi;
 
@@ -58,6 +60,7 @@ export const SocialMediaProvider = ({ children }) => {
 
             setState({provider,signer,contract})
 
+
         }
         else {
             console.log("No accounts found");
@@ -66,7 +69,13 @@ export const SocialMediaProvider = ({ children }) => {
     }
 
     const connectWallet = async ()=>{
-        if (!ethereum) return alert("Please install MetaMask.");
+        if (!ethereum)
+        {
+            return 0
+        }
+        if(currentAccount){
+            return 1
+        }
         const accounts = await ethereum.request({ method: "eth_requestAccounts", });
         setCurrentAccount(accounts[0]);
 
@@ -78,6 +87,8 @@ export const SocialMediaProvider = ({ children }) => {
         const contract = new ethers.Contract(contractAddres,contractAbi,signer);
 
         setState({provider,signer,contract})
+
+        return 1;
 
     }
 
@@ -91,16 +102,21 @@ export const SocialMediaProvider = ({ children }) => {
 
             body: JSON.stringify(input)
         });
-        const result = response.json()
+        const result = await response.json()
         return result
     }
-
-    const getPostComments = async (postId)=>{
-        // const { contract } = state
-        // const comments = await contract.viewPostComment(postId);
-        // setCommentData(comments)
-        // console.log(comments);
+    const filterImage = async (input)=>{
+        const formData = new FormData()
+        formData.append('file', input[0]);
+        const response = await fetch("http://127.0.0.1:5000/media/upload", {
+            method: 'POST',
+            mode: 'cors',
+            body: formData
+        });
+        const result = await response.json()
+        console.log(result);
     }
+
     useEffect(() => {
      checkIfWalletIsConnect();
     },[]);
@@ -118,7 +134,6 @@ export const SocialMediaProvider = ({ children }) => {
             state,
             post,
             setPost,
-            getPostComments,
             isVisible,
             setIsvisible,
             openView,
@@ -126,7 +141,8 @@ export const SocialMediaProvider = ({ children }) => {
             closeViewModal,
             openPeople,
             openPeopleModal,
-            closePeopleModal
+            closePeopleModal,
+            filterImage
         }}
         >
           {children}

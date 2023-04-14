@@ -8,6 +8,8 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import FriendModal from './Components/Modals/FriendsModal/FriendModal';
 import PeopleModal from './Components/Modals/PeopleModal/PeopleModal';
 import Navbar from './Components/Navbar/Navbar';
+import ChatPage from './Components/ChatPage/ChatPage';
+import Chatting from './Components/ChatPage/Chatting';
 function App() {
   
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/mypost" element={<UserPost />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/chat/:userId" element={<Chatting />} />
       </Routes>
     </Router>
     </>

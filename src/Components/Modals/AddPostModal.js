@@ -2,11 +2,29 @@ import React,{ useContext,useState } from 'react'
 import "./AddPostModal.css"
 import { SocialMediaContext } from '../../Context/SocialMediaContext'
 import Message from '../Message/Message';
+import { Web3Storage } from 'web3.storage'
 
 function AddPostModal() {
-    const { setErrorfilter,setSuccessfilter,state,currentAccount } = useContext(SocialMediaContext);
+    const { setErrorfilter,setSuccessfilter,state,currentAccount,filterImage,filterText } = useContext(SocialMediaContext);
     const { contract } = state
     const [postData, setPostData] = useState({})
+    const [ipfsFile,setIpfsFile] = useState(null)
+    function getAccessToken () {
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA5MzQzQzUzOTM2MTE4NTNCZDNiNjY3RjZjNWQwZTkzOTkzMzhDQjEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODEwMzU4ODY1MTcsIm5hbWUiOiJ0b2tlbjEifQ.BwE_yRAZijnjQ-_RvgB6entVfS0gRboSxCkowK7DgsU"
+    }
+    function makeStorageClient () {
+        return new Web3Storage({ token: getAccessToken() })
+    }
+    function getFiles (e) {
+        const fileInput = e.target.files
+        setIpfsFile(fileInput)
+    }
+    async function storeFiles (files) {
+        const client = makeStorageClient()
+        const cid = await client.put(files)
+        console.log('stored files with cid:', cid)
+        return cid
+    }
 
     const handleModalClose = ()=>{
         const modal = document.querySelector("#modal");
@@ -27,16 +45,24 @@ function AddPostModal() {
         })
     }
     const handleSubmit = async ()=>{
-        // const res = await filterText({comment:postData.post_text})
-        const res={
-            msg:"Positive"
-        }
+        // await filterImage(ipfsFile)
+        
+        const res = await filterText({comment:postData.post_text})
+        // const res={
+        //     msg:"Positive"
+        // }
         console.log(res);
         if(res.msg==="Positive"){
             setSuccessfilter(true)
             setErrorfilter(false)
+            let cid,url;
+            if(ipfsFile){
+                cid = await storeFiles(ipfsFile)
+                url = `${cid}.ipfs.dweb.link/${ipfsFile[0].name}`
+                console.log("Url is : ",url);
+            }
 
-            await contract.addPost(currentAccount,postData.post_text,"This is image hash");
+            contract && await contract.addPost(currentAccount,postData.post_text,cid?url:"");
             window.location.reload()
         }
         else{
@@ -57,7 +83,7 @@ function AddPostModal() {
             <div className="modal_body">
                 <div className="modal-container">
                     <textarea className='post_text' name="post_text" id="" rows="10" onChange={handleChange} placeholder="Enter your post" ></textarea>
-                    <input type="file" />
+                    <input type="file" onChange={getFiles} />
                 </div>
                 <button className='modal-qstn-submit' onClick={handleSubmit}>Submit</button>
             </div>

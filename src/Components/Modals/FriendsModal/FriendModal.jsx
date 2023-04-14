@@ -17,14 +17,10 @@ const FriendModal = () => {
 
     useEffect(()=>{
         const getFriends = async()=>{
-            const friends = await contract.getFollowers(currentAccount)
-            const arr=[]
-            for(let i=0;i<friends.length;i++){
-                const fri=await contract.getProfile(friends[i]);
-                arr.push(fri);
-            }
-            console.log(arr);
-            setFriends(arr)
+            const fri = await contract.getFollowers(currentAccount)
+            
+            console.log("friends are\n",fri);
+            setFriends(fri)
         }
         contract && getFriends()
     },[contract])
@@ -44,8 +40,8 @@ const FriendModal = () => {
                                         <div className='info'>
                                             <img src={userimg} alt="" width={50} />
                                             <div className="name">
-                                                <b><p>{fr.accountCid}</p></b>
-                                                <span>@name</span>
+                                                <b><p>{fr.name}</p></b>
+                                                <span>@{fr.username}</span>
                                             </div>
                                         </div>
                                         <div className="btn">

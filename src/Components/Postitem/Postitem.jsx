@@ -27,8 +27,9 @@ function Postitem(props) {
         </div>
       </div>
       <div className="post_contents">
-        <span>{props.postHash}</span>
-        <img src={props.pic} alt="" />
+        <span>{props.postText}</span>
+        {console.log(props.pic)}
+        <img src={props.pic?`https://${props.pic}`:""} alt="" />
       </div>
       <div className="post_controls">
         <div className="like">

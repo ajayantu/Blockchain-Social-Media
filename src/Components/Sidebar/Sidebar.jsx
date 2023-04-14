@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Sidebar.css"
 import pic3 from "../../assets/blockchain.png"
-import { SocialMediaContext } from '../../Context/SocialMediaContext'
 import { Link } from "react-router-dom"
 function SideBar(){
 
-  const {openViewModal,openPeopleModal} = useContext(SocialMediaContext)
   const handleModal = (e)=>{
     e.preventDefault()
     const modal = document.querySelector("#modal");
@@ -44,7 +42,6 @@ function SideBar(){
                     <ul className="menu_links">
                       <div className="main_links">
                         <li>
-                          {console.log(window.location.pathname)}
                           <Link to="/home" id={window.location.pathname.includes("/home")?"selected-sidemenu":""}>
                             <i className="bx bxs-home" />
                             <span>Home</span>
@@ -57,7 +54,7 @@ function SideBar(){
                           </Link>
                         </li>
                         <li>
-                          <a href="/">
+                          <a href="/chat" id={window.location.pathname.includes("/chat")?"selected-sidemenu":""}>
                             <i className="bx bx-message-square-dots" />
                             <span>Chat</span>
                           </a>

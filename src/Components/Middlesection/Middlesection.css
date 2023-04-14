@@ -1,6 +1,6 @@
 .middle_part{
     margin-left: 19em;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 
@@ -35,7 +35,9 @@
 
     margin-bottom: 20px;
 }
-
+.post_container{
+    padding: 4%;
+}
 
 .post_item .user_details{
     display: flex;
