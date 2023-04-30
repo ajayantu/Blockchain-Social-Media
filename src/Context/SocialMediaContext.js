@@ -17,6 +17,15 @@ export const SocialMediaProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [errorfilter,setErrorfilter] = useState(false)
     const [successfilter,setSuccessfilter] = useState(false)
+    const [filterFeedback,setFilterFeedback] = useState({
+        isEnable:false,
+        msg:"",
+        color:""
+    })
+    const [progress,setProgress] = useState({
+        msg:"",
+        prog:0
+    })
     const [isVisible,setIsvisible] = useState(false)
 
     const [openView, setOpenView] = useState(false)
@@ -50,7 +59,7 @@ export const SocialMediaProvider = ({ children }) => {
             setCurrentAccount(accounts[0]);
 
             // const contractAddress1="0x4353c29e8b6a3f4FF6958570F8D77a5659E04E33";
-            const contractAddres ="0xaba91c258dE3482cc62f69226b75e3dE7F51869A";
+            const contractAddres ="0x85C2Ad2d8d9e4d26301566C06523f00b19D290e3";
             
             const contractAbi = abi.abi;
 
@@ -92,15 +101,28 @@ export const SocialMediaProvider = ({ children }) => {
 
     }
 
-    const filterText = async (input)=>{
-        const response = await fetch("http://127.0.0.1:5000/", {
+    const filterText = async (input,flag=0)=>{
+        let data;
+        if(flag==1){
+            data = {
+                comment:input
+            }
+        }
+        else{
+            data = {
+                comment:input.post_text
+            }
+        }
+        
+        console.log(input);
+        const response = await fetch("http://127.0.0.1:5000/media/text", {
             method: 'POST',
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json'
             },
 
-            body: JSON.stringify(input)
+            body: JSON.stringify(data)
         });
         const result = await response.json()
         return result
@@ -108,13 +130,13 @@ export const SocialMediaProvider = ({ children }) => {
     const filterImage = async (input)=>{
         const formData = new FormData()
         formData.append('file', input[0]);
-        const response = await fetch("http://127.0.0.1:5000/media/upload", {
+        const response = await fetch("http://127.0.0.1:5000/media/image", {
             method: 'POST',
             mode: 'cors',
             body: formData
         });
         const result = await response.json()
-        console.log(result);
+        return result
     }
 
     useEffect(() => {
@@ -127,10 +149,6 @@ export const SocialMediaProvider = ({ children }) => {
             connectWallet,
             currentAccount,
             filterText,
-            errorfilter,
-            successfilter,
-            setErrorfilter,
-            setSuccessfilter,
             state,
             post,
             setPost,
@@ -142,7 +160,11 @@ export const SocialMediaProvider = ({ children }) => {
             openPeople,
             openPeopleModal,
             closePeopleModal,
-            filterImage
+            filterImage,
+            filterFeedback,
+            setFilterFeedback,
+            progress,
+            setProgress
         }}
         >
           {children}

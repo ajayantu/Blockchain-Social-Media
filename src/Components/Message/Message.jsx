@@ -3,16 +3,15 @@ import './Message.css'
 import { SocialMediaContext } from '../../Context/SocialMediaContext'
 
 const Message = () => {
-    const { errorfilter,successfilter } = useContext(SocialMediaContext);
+    const { errorfilter,filterFeedback } = useContext(SocialMediaContext);
     return (
         <div className="message">
-            {successfilter && <div className="success">
-                <div>Success</div>
-                <div>Post is successfully Added</div>
-            </div>}
-            {errorfilter && <div className="error">
-                <div>Error</div>
-                <div>Illegal Content Please Remove</div>
+            {filterFeedback.isEnable && 
+            <div className="error">
+                <div className='toppart'>
+                    <p>Error</p>
+                </div>
+                <div className='bottompart'>{filterFeedback.msg}</div>
             </div>}
         </div>
         

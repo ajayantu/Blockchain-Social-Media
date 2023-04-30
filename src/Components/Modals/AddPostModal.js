@@ -3,9 +3,10 @@ import "./AddPostModal.css"
 import { SocialMediaContext } from '../../Context/SocialMediaContext'
 import Message from '../Message/Message';
 import { Web3Storage } from 'web3.storage'
+import ProgressBar from '../ProgessBar/ProgressBar';
 
 function AddPostModal() {
-    const { setErrorfilter,setSuccessfilter,state,currentAccount,filterImage,filterText } = useContext(SocialMediaContext);
+    const { state,currentAccount,filterImage,filterText, setFilterFeedback,setProgress } = useContext(SocialMediaContext);
     const { contract } = state
     const [postData, setPostData] = useState({})
     const [ipfsFile,setIpfsFile] = useState(null)
@@ -45,30 +46,78 @@ function AddPostModal() {
         })
     }
     const handleSubmit = async ()=>{
-        // await filterImage(ipfsFile)
-        
-        const res = await filterText({comment:postData.post_text})
-        // const res={
-        //     msg:"Positive"
-        // }
-        console.log(res);
-        if(res.msg==="Positive"){
-            setSuccessfilter(true)
-            setErrorfilter(false)
-            let cid,url;
-            if(ipfsFile){
-                cid = await storeFiles(ipfsFile)
-                url = `${cid}.ipfs.dweb.link/${ipfsFile[0].name}`
-                console.log("Url is : ",url);
-            }
+        setProgress({
+            msg:"Starting Upload...",
+            prog:0
+        })
+        setFilterFeedback({
+            isEnable:false,
+        })
+        if(!postData.post_text && !ipfsFile){
+            setFilterFeedback({
+                isEnable:true,
+                msg:"Add some contents to the post..."
+            })
+            return
+        }
+        setProgress({
+            msg:"Filtering..",
+            prog:10
+        })
+        if(postData.post_text){
 
-            contract && await contract.addPost(currentAccount,postData.post_text,cid?url:"");
-            window.location.reload()
+            const res = await filterText(postData)
+
+            if(res.msg==0){
+                setFilterFeedback({
+                    isEnable:true,
+                    msg:"Violence detected in post text. Please modify your post..."
+                })
+                return
+            }
+            else{
+                console.log("passed filter text",res);
+            }
         }
-        else{
-            setSuccessfilter(false)
-            setErrorfilter(true)
+        setProgress({
+            msg:"Filtering..",
+            prog:20
+        })
+        if(ipfsFile){
+            const res = await filterImage(ipfsFile)
+            if(res.msg==0){
+                setFilterFeedback({
+                    isEnable:true,
+                    msg:"Violence detected in your image..."
+                })
+                return
+            }
+            else{
+                console.log("passed filter image",res);
+            }
         }
+        setProgress({
+            msg:"Uploading to IPFS..",
+            prog:40
+        })
+        //upload to ipfs and store in blockchain
+
+        // let cid,url;
+        // if(ipfsFile){
+        //     cid = await storeFiles(ipfsFile)
+        //     url = `${cid}.ipfs.dweb.link/${ipfsFile[0].name}`
+        //     console.log("Url is : ",url);
+        // }
+        // setProgress({
+        //     msg:"Uplaoding to Blockchain..",
+        //     prog:60
+        // })
+        // contract && await contract.addPost(currentAccount,postData.post_text?postData.post_text:"",cid?url:"");
+        // setProgress({
+        //     msg:"Uplaoding to Blockchain..",
+        //     prog:100
+        // })
+        // window.location.reload()
         
     }
   return (
@@ -88,6 +137,7 @@ function AddPostModal() {
                 <button className='modal-qstn-submit' onClick={handleSubmit}>Submit</button>
             </div>
             <Message />
+            <ProgressBar />
         </div>
         <div id="overlay" onClick={handleModalClose}></div>
     </>

@@ -3,9 +3,10 @@ import CommentItem from '../Middlesection/CommentItem/CommentItem'
 import "./CommentMain.css"
 import { SocialMediaContext } from '../../Context/SocialMediaContext'
 import pic1 from "../../assets/user.png"
+import Message from '../Message/Message'
 
 function CommentMainItem(props) {
-  const { state } = useContext(SocialMediaContext);
+  const { state,filterText,setFilterFeedback } = useContext(SocialMediaContext);
   const { contract } = state
   const [commentData,setCommentData] = useState(null)
   const [comment,setComment] = useState("");
@@ -13,8 +14,17 @@ function CommentMainItem(props) {
         setComment(e.target.value)
       }
       const handlePostComment= async ()=>{
-        contract && await contract.addComment(props.postId-1,comment);
-        window.location.reload()
+        const res = await filterText(comment,1)
+        if(res.msg==1){
+          contract && await contract.addComment(props.postId-1,comment);
+          window.location.reload()
+        }
+        else{
+          setFilterFeedback({
+            isEnable:true,
+            msg:"Violence content found in your comment..."
+          })
+        }
       }
       useEffect(()=>{
         document.querySelector(`.input_comment${props.postId} input`).focus()
@@ -39,6 +49,7 @@ function CommentMainItem(props) {
                 </div>
               </div>
             </div>
+              <Message />
             <div className="comments_container">
               <div className="comments_part">
                 {commentData && commentData.map((ele,index) => {

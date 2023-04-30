@@ -27,11 +27,11 @@ function UserPost() {
                 {
                     userposts.length>0?userposts.map((post,index)=>{
                         return (
-                        <div className="userpost_item">
+                        <div className="userpost_item" key={index}>
                             <div className="userpost_img">
-                                <img src={pic} alt="" />
+                                <img src={`https://${post.imgUrl}`} alt="" />
                             </div>
-                            <p>{post.postHash}</p>
+                            <p>{post.postText}</p>
                         </div>
                         )
                     }):<p className='nopost'>You have not posted yet</p>

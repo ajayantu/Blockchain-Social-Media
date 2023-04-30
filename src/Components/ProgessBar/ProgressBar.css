@@ -1,0 +1,23 @@
+.progress_container{
+    padding: 20px 20px;
+}
+.progress .bar{
+    transition: 3s;
+    height: 100%;
+    background-color: #306ee8;
+    border-radius: 10px;
+}
+.bar_container{
+    padding: 8px;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #13111c;
+}
+.progress_text{
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-left: 5px;
+}

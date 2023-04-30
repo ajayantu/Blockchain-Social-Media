@@ -28,7 +28,6 @@ function Postitem(props) {
       </div>
       <div className="post_contents">
         <span>{props.postText}</span>
-        {console.log(props.pic)}
         <img src={props.pic?`https://${props.pic}`:""} alt="" />
       </div>
       <div className="post_controls">
