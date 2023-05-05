@@ -9,9 +9,10 @@ function AddPostModal() {
     const { state,currentAccount,filterImage,filterText, setFilterFeedback,setProgress } = useContext(SocialMediaContext);
     const { contract } = state
     const [postData, setPostData] = useState({})
+    const [enableProgress,setEnableProgress] = useState(false)
     const [ipfsFile,setIpfsFile] = useState(null)
     function getAccessToken () {
-        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA5MzQzQzUzOTM2MTE4NTNCZDNiNjY3RjZjNWQwZTkzOTkzMzhDQjEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODEwMzU4ODY1MTcsIm5hbWUiOiJ0b2tlbjEifQ.BwE_yRAZijnjQ-_RvgB6entVfS0gRboSxCkowK7DgsU"
+        return process.env.REACT_APP_IPFS
     }
     function makeStorageClient () {
         return new Web3Storage({ token: getAccessToken() })
@@ -46,6 +47,7 @@ function AddPostModal() {
         })
     }
     const handleSubmit = async ()=>{
+        setEnableProgress(true)
         setProgress({
             msg:"Starting Upload...",
             prog:0
@@ -102,22 +104,22 @@ function AddPostModal() {
         })
         //upload to ipfs and store in blockchain
 
-        // let cid,url;
-        // if(ipfsFile){
-        //     cid = await storeFiles(ipfsFile)
-        //     url = `${cid}.ipfs.dweb.link/${ipfsFile[0].name}`
-        //     console.log("Url is : ",url);
-        // }
-        // setProgress({
-        //     msg:"Uplaoding to Blockchain..",
-        //     prog:60
-        // })
-        // contract && await contract.addPost(currentAccount,postData.post_text?postData.post_text:"",cid?url:"");
-        // setProgress({
-        //     msg:"Uplaoding to Blockchain..",
-        //     prog:100
-        // })
-        // window.location.reload()
+        let cid,url;
+        if(ipfsFile){
+            cid = await storeFiles(ipfsFile)
+            url = `${cid}.ipfs.dweb.link/${ipfsFile[0].name}`
+            console.log("Url is : ",url);
+        }
+        setProgress({
+            msg:"Uplaoding to Blockchain..",
+            prog:60
+        })
+        contract && await contract.addPost(currentAccount,postData.post_text?postData.post_text:"",cid?url:"");
+        setProgress({
+            msg:"Uplaoding to Blockchain..",
+            prog:100
+        })
+        window.location.reload()
         
     }
   return (
@@ -137,7 +139,7 @@ function AddPostModal() {
                 <button className='modal-qstn-submit' onClick={handleSubmit}>Submit</button>
             </div>
             <Message />
-            <ProgressBar />
+            {enableProgress && <ProgressBar />}
         </div>
         <div id="overlay" onClick={handleModalClose}></div>
     </>

@@ -15,7 +15,7 @@
     width: 100%;
 }
 .userpost_img img{
-    width: 100%;
+    /* width: 100%; */
     max-width: 200px;
     min-width: 150px;
     height: 100%;

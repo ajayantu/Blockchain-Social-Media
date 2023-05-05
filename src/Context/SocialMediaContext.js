@@ -88,7 +88,7 @@ export const SocialMediaProvider = ({ children }) => {
         const accounts = await ethereum.request({ method: "eth_requestAccounts", });
         setCurrentAccount(accounts[0]);
 
-        const contractAddres = "0x4353c29e8b6a3f4FF6958570F8D77a5659E04E33";
+        const contractAddres = process.env.REACT_APP_BLOCKCHAIN;
         const contractAbi = abi.abi;
 
         const provider = new ethers.providers.Web3Provider(window.ethereum)
