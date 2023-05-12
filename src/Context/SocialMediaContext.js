@@ -115,7 +115,7 @@ export const SocialMediaProvider = ({ children }) => {
         }
         
         console.log(input);
-        const response = await fetch("http://127.0.0.1:5000/media/text", {
+        const response = await fetch(`${process.env.REACT_APP_ML}/media/text`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -130,7 +130,7 @@ export const SocialMediaProvider = ({ children }) => {
     const filterImage = async (input)=>{
         const formData = new FormData()
         formData.append('file', input[0]);
-        const response = await fetch("http://127.0.0.1:5000/media/image", {
+        const response = await fetch(`${process.env.REACT_APP_ML}/media/image`, {
             method: 'POST',
             mode: 'cors',
             body: formData

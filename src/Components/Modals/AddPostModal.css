@@ -7,7 +7,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-55%) scale(0);
+    transform: translate(-50%,-50%) scale(0);
     transition: 200ms;
     background: #262626;
     border-radius: 10px;
@@ -101,6 +101,15 @@
     width: 100%;
     font-size: 0.9rem;
     font-weight: 500;
+}
+.modal-container textarea{
+    width: 100%;
+    resize: none;
+}
+@media(max-width:850px){
+    .modal{
+        margin-top: 50px;
+    }
 }
 
 

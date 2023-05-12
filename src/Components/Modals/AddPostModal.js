@@ -133,7 +133,7 @@ function AddPostModal() {
             </div>
             <div className="modal_body">
                 <div className="modal-container">
-                    <textarea className='post_text' name="post_text" id="" rows="10" onChange={handleChange} placeholder="Enter your post" ></textarea>
+                    <textarea className='post_text' name="post_text" id="" rows="5" onChange={handleChange} placeholder="Enter your post" ></textarea>
                     <input type="file" onChange={getFiles} />
                 </div>
                 <button className='modal-qstn-submit' onClick={handleSubmit}>Submit</button>
