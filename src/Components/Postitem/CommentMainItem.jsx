@@ -29,7 +29,6 @@ function CommentMainItem(props) {
       useEffect(()=>{
         document.querySelector(`.input_comment${props.postId} input`).focus()
         const getComments = async()=>{
-            console.log("comments fetched");
             const comments = await contract.viewPostComment(props.postId-1);
             setCommentData(comments)
         }

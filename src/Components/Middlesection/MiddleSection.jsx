@@ -22,7 +22,6 @@ function Middlesection(){
         const user = await contract.getProfile(posts[i].userId)
         users.push(user)
       }
-      console.log(posts);
       setpostUsers(users)
       setPost(posts)
     }
