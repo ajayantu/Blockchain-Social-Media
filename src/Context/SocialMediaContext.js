@@ -15,8 +15,6 @@ export const SocialMediaProvider = ({ children }) => {
     })
     
     const [currentAccount, setCurrentAccount] = useState("");
-    const [errorfilter,setErrorfilter] = useState(false)
-    const [successfilter,setSuccessfilter] = useState(false)
     const [filterFeedback,setFilterFeedback] = useState({
         isEnable:false,
         msg:"",
@@ -103,7 +101,7 @@ export const SocialMediaProvider = ({ children }) => {
 
     const filterText = async (input,flag=0)=>{
         let data;
-        if(flag==1){
+        if(flag===1){
             data = {
                 comment:input
             }
@@ -113,8 +111,6 @@ export const SocialMediaProvider = ({ children }) => {
                 comment:input.post_text
             }
         }
-        
-        console.log(input);
         const response = await fetch(`${process.env.REACT_APP_ML}/media/text`, {
             method: 'POST',
             mode: 'cors',
@@ -141,6 +137,7 @@ export const SocialMediaProvider = ({ children }) => {
 
     useEffect(() => {
      checkIfWalletIsConnect();
+     // eslint-disable-next-line
     },[]);
     
     return (
